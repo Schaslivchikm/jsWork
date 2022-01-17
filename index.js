@@ -22,19 +22,6 @@ StudentInfo.country = 'Ukraine';
 
 // функция которая запрашивает число и проверяет простое оно (просто число делиться без остатка на себя и на единицу)
 
-
-//  {
-//   for (let i = 2; i <= number; i++) {
-//     if (number % i === 0) {
-//       console.log('Не простое число');
-//       break;
-//     } else {
-//       console.log('Простое число');
-//       break;
-//     }
-//   }
-// }
-
 function primeNumber(number) {
   let i = 1;
   while (++i <= number) {
@@ -51,10 +38,11 @@ function primeNumber(number) {
     }
   }
 }
-
 primeNumber(82);
 
 
+
+/**********************************/
 function getArea(width, height) {
   return width * height
 }
@@ -64,9 +52,17 @@ function getArea(width, height) {
 // const getAreaExp = function (width, height) {
 //   return width * height;
 // }
+/*********************************/
+
 
 
 function isCorectRectangle(a, b, c) {
   const corectRectangle = (a <= b + c && b <= c + a && c <= b + a) ? true : false;
   return corectRectangle;
+}
+
+
+function isWorkingAgePerson(age) {
+  const agePerson = (age >= 16 && age <= 65) ? true : false;
+  return agePerson;
 }
