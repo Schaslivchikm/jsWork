@@ -66,3 +66,17 @@ function isWorkingAgePerson(age) {
   const agePerson = (age >= 16 && age <= 65) ? true : false;
   return agePerson;
 }
+isWorkingAgePerson(18);
+
+
+function checkMultiplicity(a, b) {
+  if (a % b === 0) {
+    return true;
+  } else if (b > a) {
+    return false;
+  } else {
+    return false;
+  }
+}
+checkMultiplicity(15, 5);
+
