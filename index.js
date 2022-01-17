@@ -80,3 +80,9 @@ function checkMultiplicity(a, b) {
 }
 checkMultiplicity(15, 5);
 
+function squareTriangle(a, b, c, r) {
+  if (a <= b + c && b <= c + a && c <= b + a) {
+    return r * ((a + b + c) / 2);
+  }
+  console.log('incorect value');
+}
