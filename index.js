@@ -23,19 +23,36 @@ StudentInfo.country = 'Ukraine';
 // функция которая запрашивает число и проверяет простое оно (просто число делиться без остатка на себя и на единицу)
 
 
+//  {
+//   for (let i = 2; i <= number; i++) {
+//     if (number % i === 0) {
+//       console.log('Не простое число');
+//       break;
+//     } else {
+//       console.log('Простое число');
+//       break;
+//     }
+//   }
+// }
+
 function primeNumber(number) {
-  for (let i = 1; i <= number; i++) {
+  let i = 1;
+  while (++i <= number) {
     if (number % i === 0) {
-      console.log('Не простое число');
+      console.log('обычное число - false');
       break;
-    } else {
-      console.log('Простое число');
+    } else if (i <= 3) {
+      console.log('Простое число - true');
+      break;
+    }
+    else {
+      console.log('Простое число - true');
       break;
     }
   }
 }
 
-primeNumber(21);
+primeNumber(82);
 
 
 function getArea(width, height) {
