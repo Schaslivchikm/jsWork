@@ -1,88 +1,115 @@
-
-const Student = function (firstName, lastName, age, city) {
-  this.firstName = firstName;
-  this.lastName = lastName;
+function User(name, surname, age, isMale, email, isSubscribed) {
+  this.firstName = name;
+  this.lastName = surname;
   this.age = age;
-  this.city = city;
+  this.isMale = isMale;
+  this.email = email;
+  this.isSubscribed = isSubscribed;
 }
 
-Student.prototype = {
-  changeCity: function (newCity) {
-    this.city = newCity;
+const users = [];
+
+for (let i = 0; i < 20; i++) {
+  const user = new User(
+    `Username${i}`,
+    `Usersurname${i}`,
+    Math.floor(Math.random() * 90),
+    Math.random() > 0.5,
+    `useremail${i}@gmail.com`,
+    Math.random() > 0.5
+  );
+  User.prototype = {
+    getFullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  }
+  users.push(user);
+}
+
+
+
+const filterArray = users.map(item => item).filter((item) => !item.isMale && item.age >= 6 && item.age <= 18)
+console.log(filterArray);
+
+const student = {
+
+  name: "Rudolf",
+  surname: "Alfredovich",
+  gender: "Male",
+  phone: "322-33-22",
+  country: "Ukraine",
+  city: "Uzhgorog",
+  street: "Kvitucha",
+  house: "24",
+
+  fullName() {
+
+    return this.name + " " + this.surname
+
   },
-  changeCounry: function (newCountry) {
-    this.country = newCountry;
+
+  fullAddress() {
+
+    return this.country + ", " + this.city + ", " + this.street + " " + this.house
+
   }
+
 }
 
 
-const StudentInfo = new Student('Ivan', 'Ivanov', 21, 'Zaporozhe');
-StudentInfo.country = 'Ukraine';
 
 
-// функция которая запрашивает число и проверяет простое оно (просто число делиться без остатка на себя и на единицу)
-
-function primeNumber(number) {
-  let i = 1;
-  while (++i <= number) {
-    if (number % i === 0) {
-      console.log('обычное число - false');
-      break;
-    } else if (i <= 3) {
-      console.log('Простое число - true');
-      break;
+class Vehicle {
+  constructor(dimensions, brand, model, manufactureDate) {
+    this.dimensions = dimensions;
+    this.brand = brand;
+    this.model = model;
+    this.manufactureDate = manufactureDate;
+  }
+  getMaxSize() {
+    const { length, width, height } = this.dimensions;
+    if (typeof length !== 'number' || typeof width !== 'number' || typeof height !== 'number') {
+      throw new TypeError('must be namber')
     }
-    else {
-      console.log('Простое число - true');
-      break;
-    }
+    return `length: ${length}mm,  width: ${width}mm,  height: ${height}mm`
+  }
+  getAge() {
+    return `${new Date().getFullYear() - this.manufactureDate} years`;
   }
 }
-primeNumber(82);
 
 
-
-/**********************************/
-function getArea(width, height) {
-  return width * height
+const vehicleMaxSize = {
+  length: 10,
+  width: 20,
+  height: 12,
 }
-
-// console.log(getArea(10, 3));
-
-// const getAreaExp = function (width, height) {
-//   return width * height;
-// }
-/*********************************/
+const vehicle = new Vehicle(vehicleMaxSize, 'geely', 'ck2', new Date(2015))
 
 
-
-function isCorectRectangle(a, b, c) {
-  const corectRectangle = (a <= b + c && b <= c + a && c <= b + a) ? true : false;
-  return corectRectangle;
-}
-
-
-function isWorkingAgePerson(age) {
-  const agePerson = (age >= 16 && age <= 65) ? true : false;
-  return agePerson;
-}
-isWorkingAgePerson(18);
-
-
-function checkMultiplicity(a, b) {
-  if (a % b === 0) {
-    return true;
-  } else if (b > a) {
-    return false;
-  } else {
-    return false;
+class PassengerTransprot extends Vehicle {
+  constructor(dimensions, brand, model, manufactureDate, passengersLimit, passengersCount) {
+    super(dimensions, brand, model, manufactureDate);
+    this.passengersLimit = passengersLimit;
+    this.passengersCount = passengersCount;
+  }
+  get addPassenger() {
+    this.passengersCount++;
+    this.passengersLimit >= this.passengersCount;
   }
 }
-checkMultiplicity(15, 5);
 
-function squareTriangle(a, b, c, r) {
-  if (a <= b + c && b <= c + a && c <= b + a) {
-    return r * ((a + b + c) / 2);
+const passangerTransport = new PassengerTransprot(vehicleMaxSize, 'geely', 'ck2', 2018, 25, 21)
+
+
+class FreightTransport extends Vehicle {
+  constructor(dimensions, brand, model, manufactureDate, capacity) {
+    super(dimensions, brand, model, manufactureDate);
+    this.capacity = capacity;
   }
-  console.log('incorect value');
+  checkLoadingPossibility(weight) {
+    return (this.capacity >= weight)
+  }
 }
+
+const freightTransport = new FreightTransport(vehicleMaxSize, 'geely', 'ck2', 2018, 3500)
